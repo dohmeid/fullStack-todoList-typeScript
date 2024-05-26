@@ -1,39 +1,22 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const todosRoute = require("./routes/todos");
+const PORT = 5000;
 
-const PORT = process.env.PORT || 5000;
+//Execute express 
 const app = express();
-app.use(cors());
-app.use(express.json());
 
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost/mern-stack-db', { useNewUrlParser: true, useUnifiedTopology: true });
+//connect to MongoDB database
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.log("Could not connect to MongoDB"));
 
-
-//MongoDB model
-const todoSchema = new mongoose.Schema({
-    task: String,
-    completed: Boolean,
-  });
-  const Todo = mongoose.model('Todo', todoSchema);
-
-  app.get('/todos', async (req, res) => {
-    const todos = await Todo.find();
-    res.json(todos);
-  });
-  
-
-/*
-app.get("/api", (req, res) => {
-    res.json({ message: "Hello from server!" });
-});
-*/
+app.use(cors()); //use the cors middleware
+app.use(express.json()); //accept the data in JSON format
+app.use("/todos", todosRoute); //set up the routes middleware
 
 
-// Define routes and middleware
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
-
-
+//start the server
+app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
