@@ -1,0 +1,23 @@
+.row {
+    height: 3rem;
+    border-bottom: 1px solid var(--medium-grey2);
+
+    th,
+    td {
+        text-align: center;
+    }
+
+    .deleteBtn {
+        background-color: red;
+        margin-right: 1rem;
+    }
+
+    .doneBtn {
+        background-color: var(--green-tick);
+    }
+}
+
+& .completed-task td:nth-child(2) {
+    text-decoration: line-through;
+    color: var(--medium-grey);
+}
