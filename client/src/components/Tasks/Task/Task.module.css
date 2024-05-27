@@ -17,7 +17,7 @@
     }
 }
 
-& .completed-task td:nth-child(2) {
+& .completedTask {
     text-decoration: line-through;
     color: var(--medium-grey);
 }

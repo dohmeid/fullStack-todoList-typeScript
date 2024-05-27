@@ -12,14 +12,13 @@ exports.getAllTodos = async (req, res) => {
     }
 };
 
+
 //add a new todo
 exports.addNewTodo = async (req, res) => {
     try {
         const todo = new Todo({
-            id: req.body.id,
             description: req.body.description,
-            userID: req.body.userID,
-            status: req.body.status,
+            isComplete: false,
         });
         const response = await todo.save();
         res.status(201).json({ response });
@@ -51,12 +50,8 @@ exports.updateTodo = async (req, res) => {
     try {
         const id = req.params.id;
         let updatedTodo = {
-            id: req.body.id,
-            description: req.body.description,
-            userID: req.body.userID,
-            status: req.body.status,
+            isComplete: true,
         };
-
         const response = await Todo.findByIdAndUpdate(id, updatedTodo, { new: true, });
         if (!response)
             return res.status(404).json({ error: "ERROR 404: Not Found, note was not found" });

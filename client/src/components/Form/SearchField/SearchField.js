@@ -7,7 +7,7 @@ const SearchField = () => {
     <>
       <legend>Search Tasks</legend>
       <input type="search" name="search" aria-label="search for a task"
-        placeholder="Search tasks..." tabindex="2" />
+        placeholder="Search tasks..." tabIndex="3"/>
     </>
   );
 };
