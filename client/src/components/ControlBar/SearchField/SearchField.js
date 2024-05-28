@@ -6,7 +6,7 @@ const SearchField = () => {
   const { setSearchQuery } = useContext(TodosContext);
 
   const handleSearchInputChange = (e) => {
-    let searchInput = e.target.value.toLowerCase(); //get the search query
+    let searchInput = e.target.value; //get the search query
     setSearchQuery(searchInput);
   }
 

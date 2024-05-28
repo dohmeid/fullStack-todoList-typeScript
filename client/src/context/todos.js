@@ -11,17 +11,17 @@ export const TodosProvider = ({ children }) => {
 
     //initially fetch the todos from the server
     useEffect(() => {
-        fetcTodos();
+        fetchTodos();
     }, []);
 
     //****************************FUNCTIONS****************************
     //fetch data from the Express server
-    const fetcTodos = async () => {
+    const fetchTodos = async () => {
         try {
             const data = await fetchData();
             setTodosList(data.response);
         } catch (error) {
-            console.error('Error fetching data: ', error);
+            console.error('Error fetching the todos data: ', error);
         }
     };
 
@@ -29,19 +29,19 @@ export const TodosProvider = ({ children }) => {
     const addNewTodo = async (todoData) => {
         try {
             await addData(todoData);
-            fetcTodos();
+            fetchTodos();
         } catch (error) {
-            console.error("Error adding the note:", error);
+            console.error("Error adding the todo:", error);
         }
     };
 
-    //update a todo
+    //update a todo by marking it as completed
     const updateTodo = async (todoID) => {
         try {
             await updateData(todoID);
-            fetcTodos();
+            fetchTodos();
         } catch (error) {
-            console.error("Error adding the note:", error);
+            console.error("Error updating the todo:", error);
         }
     };
 
@@ -49,24 +49,18 @@ export const TodosProvider = ({ children }) => {
     const deleteTodo = async (todoID) => {
         try {
             await deleteData(todoID);
-            fetcTodos();
+            fetchTodos();
         } catch (error) {
-            console.error("Error adding the note:", error);
+            console.error("Error deleting the todo:", error);
         }
     };
 
-
-    //this function returns the todos list to display on the screen
+    //this function returns the todos list to display on the screen - either original todo list or filtered based on search
     const getFilteredTodos = () => {
-        let todosToDisplay = [];
-        if (searchQuery !== "") {
-            let filteredTodosArray = todosList.filter((todo) => todo.description.toLowerCase().includes(searchQuery));
-            todosToDisplay = filteredTodosArray;
-        }
-        else {
-            todosToDisplay = todosList;
-        }
-        return todosToDisplay;
+        if (searchQuery !== "")
+            return todosList.filter((todo) => todo.description.toLowerCase().includes(searchQuery.toLowerCase()));
+        else
+            return todosList;
     }
 
     return (
