@@ -23,12 +23,13 @@ const AddField = () => {
         }
     };
 
-
     return (
         <>
-            <legend>Add a New Task</legend>
-            <input type="text" name="new-task-input"
-                aria-label="input for creating a new task" placeholder="Add new task..." tabIndex="1"
+            <legend htmlFor="new-task">Add a New Task</legend>
+            <input
+                type="text" id="new-task" name="new-task-input"
+                placeholder="Add new task..."
+                aria-label="input for creating a new task" tabIndex="1"
                 value={description} onChange={handleInputChange} />
             <button type="button" className={classes.addBtn} tabIndex="2"
                 onClick={handleAddButtonClick}>Add</button>

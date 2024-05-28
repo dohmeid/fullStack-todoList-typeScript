@@ -21,7 +21,7 @@ export const TodosProvider = ({ children }) => {
             const data = await fetchData();
             setTodosList(data.response);
         } catch (error) {
-            console.error('Error fetching the todos data: ', error);
+            console.error('Error fetching todos: ', error);
         }
     };
 
@@ -31,7 +31,7 @@ export const TodosProvider = ({ children }) => {
             await addData(todoData);
             fetchTodos();
         } catch (error) {
-            console.error("Error adding the todo:", error);
+            console.error("Error adding todo:", error);
         }
     };
 
@@ -41,7 +41,7 @@ export const TodosProvider = ({ children }) => {
             await updateData(todoID);
             fetchTodos();
         } catch (error) {
-            console.error("Error updating the todo:", error);
+            console.error("Error updating todo:", error);
         }
     };
 
@@ -51,16 +51,15 @@ export const TodosProvider = ({ children }) => {
             await deleteData(todoID);
             fetchTodos();
         } catch (error) {
-            console.error("Error deleting the todo:", error);
+            console.error("Error deleting todo:", error);
         }
     };
 
     //this function returns the todos list to display on the screen - either original todo list or filtered based on search
     const getFilteredTodos = () => {
-        if (searchQuery !== "")
-            return todosList.filter((todo) => todo.description.toLowerCase().includes(searchQuery.toLowerCase()));
-        else
-            return todosList;
+        return (searchQuery !== "")
+            ? todosList.filter(todo => todo.description.toLowerCase().includes(searchQuery.toLowerCase()))
+            : todosList;
     }
 
     return (

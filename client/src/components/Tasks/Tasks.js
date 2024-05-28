@@ -8,7 +8,7 @@ const Tasks = () => {
 
     //rendering the todos list
     let todosArray = getFilteredTodos();
-    const TODO_LIST = todosArray.map((todo, index) => (
+    const todoList = todosArray.map((todo, index) => (
         <Task key={todo._id} index={index + 1} todoData={todo} />
     ));
 
@@ -24,13 +24,17 @@ const Tasks = () => {
             </thead>
 
             <tbody>
-                {TODO_LIST}
+                {(todosArray.length > 0)
+                    ? todoList
+                    : <tr>
+                        <td colSpan="4">No tasks to display</td>
+                    </tr>
+                }
             </tbody>
 
             <tfoot>
                 <tr>
-                    <td colSpan="5">Total tasks:<span>{todosArray.length}</span>
-                    </td>
+                    <td colSpan="4">Total tasks:<span>{todosArray.length}</span></td>
                 </tr>
             </tfoot>
         </table>

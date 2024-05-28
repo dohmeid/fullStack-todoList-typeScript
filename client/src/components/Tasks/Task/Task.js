@@ -23,9 +23,20 @@ const Task = ({ index, todoData }) => {
             <td className={todoData.isComplete ? classes.completedTask : ""}>{todoData.description}</td>
             <td>{todoData.isComplete ? "Completed" : "Pending"}</td>
             <td>
-                <button type="submit" className={classes.deleteBtn} onClick={handleDeleteButtonClick}>Delete</button>
-                <button type="submit" className={classes.doneBtn} disabled={todoData.isComplete}
-                    onClick={handleDoneButtonClick}>Done</button>
+                <button
+                    type="submit"
+                    className={classes.deleteBtn}
+                    aria-label="Delete task"
+                    onClick={handleDeleteButtonClick}
+                >Delete</button>
+
+                <button
+                    type="submit"
+                    className={classes.doneBtn}
+                    aria-label="Mark as done"
+                    disabled={todoData.isComplete}
+                    onClick={handleDoneButtonClick}
+                >Done</button>
             </td>
         </tr>
     );

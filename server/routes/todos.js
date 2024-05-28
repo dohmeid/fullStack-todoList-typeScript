@@ -8,10 +8,10 @@ router.get("/", todoController.getAllTodos);
 // add a new todo
 router.post("/", todoController.addNewTodo);
 
-//delete a specific note using its ID
+//delete a specific todo using its ID
 router.delete("/:id", todoController.deleteTodo);
 
-//update a specific note using its ID
+//update a specific todo using its ID
 router.put("/:id", todoController.updateTodo);
 
 module.exports = router;

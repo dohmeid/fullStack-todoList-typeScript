@@ -7,11 +7,10 @@ exports.getAllTodos = async (req, res) => {
         res.json({ response });
     } catch (error) {
         res.status(500).json({
-            error: "ERROR 500: Internal Server Error, failed to retrieve the notes: " + error.message,
+            error: "ERROR 500: Internal Server Error, failed to retrieve the todos: " + error.message,
         });
     }
 };
-
 
 //add a new todo
 exports.addNewTodo = async (req, res) => {
@@ -24,7 +23,7 @@ exports.addNewTodo = async (req, res) => {
         res.status(201).json({ response });
     } catch (error) {
         res.status(400).json({
-            error: "ERROR 400: Bad Request, failed to add the new note: " + error.message,
+            error: "ERROR 400: Bad Request, failed to add the new todo: " + error.message,
         });
     }
 };
@@ -35,17 +34,17 @@ exports.deleteTodo = async (req, res) => {
         const id = req.params.id;
         const response = await Todo.findByIdAndDelete(id);
         if (!response) {
-            return res.status(404).json({ error: "ERROR 400: Not Found: Note not found" });
+            return res.status(404).json({ error: "ERROR 400: Not Found: Todo not found" });
         }
-        res.json({ message: "Note deleted successfully" });
+        res.json({ message: "Todo deleted successfully" });
     } catch (error) {
         res.status(500).json({
-            error: "ERROR 500: Internal Server Error, failed to delete note: " + error.message,
+            error: "ERROR 500: Internal Server Error, failed to delete the todo: " + error.message,
         });
     }
 };
 
-//update a specific todo using its ID
+//update a specific todo using its ID (mark as completed)
 exports.updateTodo = async (req, res) => {
     try {
         const id = req.params.id;
@@ -54,9 +53,9 @@ exports.updateTodo = async (req, res) => {
         };
         const response = await Todo.findByIdAndUpdate(id, updatedTodo, { new: true, });
         if (!response)
-            return res.status(404).json({ error: "ERROR 404: Not Found, note was not found" });
+            return res.status(404).json({ error: "ERROR 404: Not Found, todo was not found" });
         res.json(response);
     } catch (error) {
-        res.status(400).json({ error: "ERROR 400: Bad Request, failed to update the note: " + error.message, });
+        res.status(400).json({ error: "ERROR 400: Bad Request, failed to update the todo: " + error.message, });
     }
 };
