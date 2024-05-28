@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Header from "./components/Header/Header";
-import Form from "./components/Form/Form";
+import ControlBar from "./components/ControlBar/ControlBar";
 import Tasks from "./components/Tasks/Tasks";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <Header />
-      <Form />
+      <ControlBar />
       <Tasks />
     </>
   );

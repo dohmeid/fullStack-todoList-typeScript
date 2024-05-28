@@ -2,23 +2,21 @@ import React, { useState, useContext } from 'react';
 import classes from './AddField.module.css';
 import { TodosContext } from "../../../context/todos";
 
-
 const AddField = () => {
-
-    const [description, setDescription] = useState("");
     const { addNewTodo } = useContext(TodosContext);
+    const [description, setDescription] = useState("");
 
     //this function updates the new todo input
     const handleInputChange = (e) => {
         setDescription(e.target.value);
     };
 
-    //this function updates the new todo input
+    //this function adds the new todo to the todo list
     const handleAddButtonClick = (e) => {
         e.preventDefault();
-
         if (description !== null && description.trim().length !== 0) {
             addNewTodo(description);
+            setDescription(""); //reset the input field
         }
         else {
             alert("the input is empty");

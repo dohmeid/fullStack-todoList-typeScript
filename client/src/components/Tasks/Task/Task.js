@@ -2,20 +2,19 @@ import React, { useContext } from 'react';
 import classes from './Task.module.css';
 import { TodosContext } from "../../../context/todos";
 
-const Task = ({ index,todoData }) => {
+const Task = ({ index, todoData }) => {
+    const { deleteTodo, updateTodo } = useContext(TodosContext);
 
-    const { deleteATodo, updateATodo } = useContext(TodosContext);
-
-    //this function marks the todo as completed
+    //this function deletes the todo
     const handleDeleteButtonClick = (e) => {
         e.preventDefault();
-        deleteATodo(todoData._id);
+        deleteTodo(todoData._id);
     };
 
-    //this function marks the todo as completed
+    //this function marks the todo as completed (updates the todo)
     const handleDoneButtonClick = (e) => {
         e.preventDefault();
-        updateATodo(todoData._id);
+        updateTodo(todoData._id);
     };
 
     return (
@@ -25,7 +24,8 @@ const Task = ({ index,todoData }) => {
             <td>{todoData.isComplete ? "Completed" : "Pending"}</td>
             <td>
                 <button type="submit" className={classes.deleteBtn} onClick={handleDeleteButtonClick}>Delete</button>
-                <button type="submit" className={classes.doneBtn} onClick={handleDoneButtonClick}>Done</button>
+                <button type="submit" className={classes.doneBtn} disabled={todoData.isComplete}
+                    onClick={handleDoneButtonClick}>Done</button>
             </td>
         </tr>
     );

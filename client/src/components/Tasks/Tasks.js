@@ -4,11 +4,11 @@ import Task from "./Task/Task";
 import { TodosContext } from '../../context/todos';
 
 const Tasks = () => {
-    const { todosList } = useContext(TodosContext);
-    console.log(todosList);
+    const { getFilteredTodos } = useContext(TodosContext);
 
     //rendering the todos list
-    const TODO_LIST = todosList.map((todo, index) => (
+    let todosArray = getFilteredTodos();
+    const TODO_LIST = todosArray.map((todo, index) => (
         <Task key={todo._id} index={index + 1} todoData={todo} />
     ));
 
@@ -29,8 +29,7 @@ const Tasks = () => {
 
             <tfoot>
                 <tr>
-                    <td colSpan="5">Total tasks:
-                        <span>0</span>
+                    <td colSpan="5">Total tasks:<span>{todosArray.length}</span>
                     </td>
                 </tr>
             </tfoot>

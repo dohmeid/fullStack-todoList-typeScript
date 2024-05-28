@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from 'react';
-import { fetchTodos, addTodo, updateTodo, deleteTodo } from "../services/API/TodosApi";
+import { fetchData, addData, updateData, deleteData } from "../services/API/TodosApi";
 
 export const TodosContext = createContext();
 
@@ -7,20 +7,18 @@ export const TodosProvider = ({ children }) => {
 
     //****************************STATES & HOOKS**********************************
     const [todosList, setTodosList] = useState([]);
-
+    const [searchQuery, setSearchQuery] = useState(""); //this state holds the search input
 
     //initially fetch the todos from the server
     useEffect(() => {
-        fetchData();
-        console.log(todosList);
+        fetcTodos();
     }, []);
-
 
     //****************************FUNCTIONS****************************
     //fetch data from the Express server
-    const fetchData = async () => {
+    const fetcTodos = async () => {
         try {
-            const data = await fetchTodos();
+            const data = await fetchData();
             setTodosList(data.response);
         } catch (error) {
             console.error('Error fetching data: ', error);
@@ -30,43 +28,56 @@ export const TodosProvider = ({ children }) => {
     //add a new todo
     const addNewTodo = async (todoData) => {
         try {
-            await addTodo(todoData);
-            fetchData();
+            await addData(todoData);
+            fetcTodos();
         } catch (error) {
             console.error("Error adding the note:", error);
         }
     };
-
 
     //update a todo
-    const updateATodo = async (todoID) => {
+    const updateTodo = async (todoID) => {
         try {
-            await updateTodo(todoID);
-            fetchData();
+            await updateData(todoID);
+            fetcTodos();
         } catch (error) {
             console.error("Error adding the note:", error);
         }
     };
-
 
     //delete a todo
-    const deleteATodo = async (todoID) => {
+    const deleteTodo = async (todoID) => {
         try {
-            await deleteTodo(todoID);
-            fetchData();
+            await deleteData(todoID);
+            fetcTodos();
         } catch (error) {
             console.error("Error adding the note:", error);
         }
     };
 
+
+    //this function returns the todos list to display on the screen
+    const getFilteredTodos = () => {
+        let todosToDisplay = [];
+        if (searchQuery !== "") {
+            let filteredTodosArray = todosList.filter((todo) => todo.description.toLowerCase().includes(searchQuery));
+            todosToDisplay = filteredTodosArray;
+        }
+        else {
+            todosToDisplay = todosList;
+        }
+        return todosToDisplay;
+    }
 
     return (
         <TodosContext.Provider
             value={{
                 todosList,
+                setSearchQuery,
                 addNewTodo,
-                updateATodo,
-                deleteATodo
+                updateTodo,
+                deleteTodo,
+                getFilteredTodos
             }}
         >
             {children}
