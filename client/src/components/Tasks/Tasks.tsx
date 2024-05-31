@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React, { FC,useContext } from 'react';
 import './Tasks.module.css';
 import Task from "./Task/Task";
-import { TodosContext } from '../../context/todos';
+import { Todo, TodosContext, TodosContextType } from '../../context/todos';
 
-const Tasks = () => {
-    const { getFilteredTodos } = useContext(TodosContext);
+const Tasks: FC = () => {
+    const { getFilteredTodos } = useContext(TodosContext) as TodosContextType;
 
     //rendering the todos list
-    let todosArray = getFilteredTodos();
-    const todoList = todosArray.map((todo, index) => (
+    let todosArray: Todo[] = getFilteredTodos();
+    const todoList = todosArray.map((todo: Todo, index: number) => (
         <Task key={todo._id} index={index + 1} todoData={todo} />
     ));
 
@@ -27,14 +27,14 @@ const Tasks = () => {
                 {(todosArray.length > 0)
                     ? todoList
                     : <tr>
-                        <td colSpan="4">No tasks to display</td>
+                        <td colSpan={4}>No tasks to display</td>
                     </tr>
                 }
             </tbody>
 
             <tfoot>
                 <tr>
-                    <td colSpan="4">Total tasks:<span>{todosArray.length}</span></td>
+                    <td colSpan={4}>Total tasks:<span>{todosArray.length}</span></td>
                 </tr>
             </tfoot>
         </table>

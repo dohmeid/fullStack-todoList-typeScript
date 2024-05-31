@@ -23,7 +23,7 @@
     }
 }
 
-& .completedTask {
+.completedTask {
     text-decoration: line-through;
     color: var(--medium-grey);
 }

@@ -8,13 +8,13 @@ export const fetchData = async () => {
             throw new Error('Failed to fetch todos');
         }
         return await response.json();
-    } catch (error) {
+    } catch (error: any) {
         throw new Error('Error fetching todos: ' + error.message);
     }
 };
 
 //this function is used to add a new todo to the database using the server
-export const addData = async (newTodoData) => {
+export const addData = async (newTodoData: string) => {
     try {
         const response = await fetch(API_URL, {
             method: 'POST',
@@ -27,13 +27,13 @@ export const addData = async (newTodoData) => {
             throw new Error('Failed to add todo');
         }
         console.log('Todo added successfully');
-    } catch (error) {
+    } catch (error: any) {
         throw new Error('Error adding todo: ' + error.message);
     }
 };
 
 //this function is used to delete a todo from the database using the server
-export const deleteData = async (id) => {
+export const deleteData = async (id: number) => {
     try {
         const response = await fetch(`${API_URL}/${id}`, {
             method: 'DELETE',
@@ -42,13 +42,13 @@ export const deleteData = async (id) => {
             throw new Error('Failed to delete todo');
         }
         console.log('Todo deleted successfully');
-    } catch (error) {
+    } catch (error: any) {
         throw new Error('Error deleting todo: ' + error.message);
     }
 };
 
 //this function is used to update a todo from the database using the server
-export const updateData = async (id) => {
+export const updateData = async (id: number) => {
     try {
         const response = await fetch(`${API_URL}/${id}`, {
             method: 'PUT',
@@ -60,7 +60,7 @@ export const updateData = async (id) => {
             throw new Error('Failed to update todo');
         }
         console.log('Todo updated successfully');
-    } catch (error) {
+    } catch (error: any) {
         throw new Error('Error updating todo: ' + error.message);
     }
 };

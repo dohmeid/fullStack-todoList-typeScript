@@ -1,18 +1,18 @@
-import React, { useState, useContext } from 'react';
+import React, { FC,useState, useContext, ChangeEvent, MouseEvent } from 'react';
 import classes from './AddField.module.css';
-import { TodosContext } from "../../../context/todos";
+import { TodosContext, TodosContextType } from "../../../context/todos";
 
-const AddField = () => {
-    const { addNewTodo } = useContext(TodosContext);
-    const [description, setDescription] = useState("");
+const AddField: FC = () => {
+    const { addNewTodo } = useContext(TodosContext) as TodosContextType;
+    const [description, setDescription] = useState<string>("");
 
     //this function updates the new todo input
-    const handleInputChange = (e) => {
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setDescription(e.target.value);
     };
 
     //this function adds the new todo to the todo list
-    const handleAddButtonClick = (e) => {
+    const handleAddButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         if (description !== null && description.trim().length !== 0) {
             addNewTodo(description);
@@ -25,13 +25,13 @@ const AddField = () => {
 
     return (
         <>
-            <legend htmlFor="new-task">Add a New Task</legend>
+            <legend>Add a New Task</legend>
             <input
                 type="text" id="new-task" name="new-task-input"
                 placeholder="Add new task..."
-                aria-label="input for creating a new task" tabIndex="1"
+                aria-label="input for creating a new task" tabIndex={1}
                 value={description} onChange={handleInputChange} />
-            <button type="button" className={classes.addBtn} tabIndex="2"
+            <button type="button" className={classes.addBtn} tabIndex={2}
                 onClick={handleAddButtonClick}>Add</button>
         </>
     );
