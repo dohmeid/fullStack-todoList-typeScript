@@ -1,14 +1,28 @@
 # fullStack-todoList-typeScript :star2:
 
-### FTS-TASK12 - Typed ToDo App
+### FTS-TASK12 - Typed ToDo App :white_check_mark:	
 
 ### :stars: Overview
-This repository creates a TODO List web application with various features to manage tasks efficiently. It implements a user-friendly interface that allows users to add, update, and remove TODO items. 
-The web app performs CRUD operations on todos' list. It consists of a frontend (FE) component that complements the backend (BE) part of the website. 
+The Typed ToDo App is designed to provide a straightforward and efficient way to manage tasks. Utilizing TypeScript ensures a robust and maintainable codebase, reducing bugs and improving the development experience. 
+The user interface is intuitive and responsive, making it easy to use on both desktop and mobile devices. 
+Key features include task creation, editing, deletion, and completion tracking, all aimed at helping users stay organized and productive.
 
 -----
 ### :dart: Features
-
+- creates a new React project.
+- sets up TypeScript in the project.
+- creates the main Components.
+- implements State Management.
+- displays To-Do Items - Use the **`map`** method to render each **`TodoItem`**
+- adds New To-Do Items:
+    - Adds an input field and a button to the **`TodoApp`** component.
+    - When the button is clicked, updates the state to add a new ToDo item with the text entered in the input field.
+- marks To-Do Items as Completed:
+    - Adds a checkbox to each **`TodoItem`** component.
+    - When a checkbox is clicked, update the completion status of the corresponding ToDo item in the state.
+- implements the ability to delete To-Do items from the list.
+- use the interface and type for passed props.
+  
 -----
 
 ### :space_invader: Technologies Used
@@ -21,8 +35,6 @@ The web app performs CRUD operations on todos' list. It consists of a frontend (
     <img src="https://img.shields.io/badge/VSCode-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white" height="30" />
     <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" height="30" />
     <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white" height="30" />
-    <img scr="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" height="30" />
-
 </div>
 
 -----
