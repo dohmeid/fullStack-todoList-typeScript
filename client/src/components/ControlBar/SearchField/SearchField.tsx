@@ -1,12 +1,13 @@
-import React, { FC,useContext, ChangeEvent } from 'react';
+import React, { FC, useContext, ChangeEvent } from 'react';
 import './SearchField.module.css';
-import { TodosContext, TodosContextType } from "../../../context/todos";
+import { TodosContext } from "../../../context/todos";
+import { TodosContextType } from "../../../interfaces/interfaces";
 
 const SearchField: FC = () => {
   const { setSearchQuery } = useContext(TodosContext) as TodosContextType;
 
   const handleSearchInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    let searchInput = e.target.value; //get the search query
+    let searchInput = e.target.value;
     setSearchQuery(searchInput);
   }
 

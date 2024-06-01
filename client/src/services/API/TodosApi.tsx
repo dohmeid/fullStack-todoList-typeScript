@@ -1,7 +1,7 @@
 const API_URL = 'http://localhost:5000/todos';
 
 //this function is used to fetch all the todos from the server
-export const fetchData = async () => {
+export const fetchData = async (): Promise<any> => {
     try {
         const response = await fetch(API_URL);
         if (!response.ok) {
@@ -14,7 +14,7 @@ export const fetchData = async () => {
 };
 
 //this function is used to add a new todo to the database using the server
-export const addData = async (newTodoData: string) => {
+export const addData = async (newTodoData: string): Promise<void> => {
     try {
         const response = await fetch(API_URL, {
             method: 'POST',
@@ -33,7 +33,7 @@ export const addData = async (newTodoData: string) => {
 };
 
 //this function is used to delete a todo from the database using the server
-export const deleteData = async (id: number) => {
+export const deleteData = async (id: number): Promise<void> => {
     try {
         const response = await fetch(`${API_URL}/${id}`, {
             method: 'DELETE',
@@ -48,7 +48,7 @@ export const deleteData = async (id: number) => {
 };
 
 //this function is used to update a todo from the database using the server
-export const updateData = async (id: number) => {
+export const updateData = async (id: number): Promise<void> => {
     try {
         const response = await fetch(`${API_URL}/${id}`, {
             method: 'PUT',

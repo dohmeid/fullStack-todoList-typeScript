@@ -1,6 +1,7 @@
-import React, { FC,useState, useContext, ChangeEvent, MouseEvent } from 'react';
+import React, { FC, useState, useContext, ChangeEvent, MouseEvent } from 'react';
 import classes from './AddField.module.css';
-import { TodosContext, TodosContextType } from "../../../context/todos";
+import { TodosContext } from "../../../context/todos";
+import { TodosContextType } from "../../../interfaces/interfaces";
 
 const AddField: FC = () => {
     const { addNewTodo } = useContext(TodosContext) as TodosContextType;

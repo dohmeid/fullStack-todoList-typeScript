@@ -1,13 +1,14 @@
-import React, { FC,useContext } from 'react';
+import React, { FC, useContext } from 'react';
 import './Tasks.module.css';
 import Task from "./Task/Task";
-import { Todo, TodosContext, TodosContextType } from '../../context/todos';
+import { TodosContext } from '../../context/todos';
+import { Todo, TodosContextType } from "../../interfaces/interfaces";
 
 const Tasks: FC = () => {
     const { getFilteredTodos } = useContext(TodosContext) as TodosContextType;
 
-    //rendering the todos list
     let todosArray: Todo[] = getFilteredTodos();
+
     const todoList = todosArray.map((todo: Todo, index: number) => (
         <Task key={todo._id} index={index + 1} todoData={todo} />
     ));

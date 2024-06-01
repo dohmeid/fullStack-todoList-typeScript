@@ -1,25 +1,25 @@
-import React, { FC, useContext } from 'react';
+import React, { FC, useContext, MouseEvent } from 'react';
 import classes from './Task.module.css';
-import { Todo, TodosContext, TodosContextType } from "../../../context/todos";
+import { TodosContext } from "../../../context/todos";
+import { Todo, TodosContextType } from "../../../interfaces/interfaces";
 
-// Define a type for the component props
 interface TaskProps {
     index: number;
     todoData: Todo;
 }
 
-// Use the 'FC' (Functional Component) generic from React, with our props type
 const Task: FC<TaskProps> = ({ index, todoData }) => {
+
     const { deleteTodo, updateTodo } = useContext(TodosContext) as TodosContextType;
 
     //this function deletes the todo
-    const handleDeleteButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleDeleteButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         deleteTodo(todoData._id);
     };
 
     //this function marks the todo as completed (updates the todo)
-    const handleDoneButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleDoneButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         updateTodo(todoData._id);
     };

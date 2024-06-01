@@ -1,16 +1,15 @@
-import React from "react";
-import Header from "./components/Header/Header.js";
-import ControlBar from "./components/ControlBar/ControlBar.js";
-import Tasks from "./components/Tasks/Tasks.js";
+import React, { FC } from "react";
+import Header from "./components/Header/Header";
+import ControlBar from "./components/ControlBar/ControlBar";
+import Tasks from "./components/Tasks/Tasks";
 
-const App = () => {
-
+const App: FC = () => {
   return (
-    <div>
+    <>
       <Header />
-      < ControlBar />
+      <ControlBar />
       <Tasks />
-    </div>
+    </>
   );
 }
 
