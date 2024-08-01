@@ -1,0 +1,49 @@
+/*************************** custom css style ********************************/
+:root {
+  --grey-shade: rgb(119, 118, 118);
+  --medium-grey: darkgrey;
+  --medium-grey2: rgb(223, 222, 222);
+  --light-grey-shade: rgb(239, 238, 238);
+  --green-tick: #4CBB17;
+}
+
+/*************************** general styles ********************************/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Trebuchet MS', sans-serif;
+}
+
+button,
+input,
+label {
+  cursor: pointer;
+}
+
+button {
+  color: white;
+  padding: 0.35rem 0.6rem;
+  border-radius: 0.3rem;
+  border: 2px solid transparent;
+  font-size: 1rem;
+
+  &:hover:not(:disabled)  {
+      opacity: 0.7;
+      border: 2px solid lightgrey;
+      transition: 0.7s;
+  }
+
+  &:focus {
+      /*for keyboard interactions*/
+      border-color: var(--medium-grey);
+  }
+}
